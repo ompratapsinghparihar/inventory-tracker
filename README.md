@@ -1,58 +1,72 @@
-# 📦 Inventory & Service Delivery Tracker
+# 🚀 Inventory Tracker System
 
-A full-stack B2B application to manage inventory and track supply requests across multiple Service Delivery Points (SDPs).
+A full-stack Inventory Management System built using **FastAPI (Backend)** and **React.js (Frontend)**.  
+This project allows users to securely manage inventory, track stock levels, and perform authenticated operations using JWT.
 
 ---
 
-## 🚀 Features
+## 📌 Live Demo
 
-### 📦 Inventory Management
-- Add & view items
-- Track quantity and threshold
-- ⚠ Low stock alerts
+- 🌐 Frontend (Vercel): https://your-vercel-link.vercel.app  
+- ⚙️ Backend (Railway): https://your-railway-link.up.railway.app  
+- 📽️ Demo Video: (Add your video link here)
 
-### 📄 Request System
-- SDPs can request items
-- Admin can:
-  - Approve ✅
-  - Reject ❌
-  - Mark as Delivered 🚚
+---
+
+## 🧠 Project Overview
+
+The Inventory Tracker is designed to help businesses or individuals:
+- Manage inventory items
+- Track stock levels
+- Monitor low stock alerts
+- Perform secure authentication
+
+---
+
+## ✨ Features
 
 ### 🔐 Authentication
-- User Signup & Login
-- Token-based authentication (JWT)
+- User Signup
+- User Login (JWT आधारित authentication)
+- Secure password hashing (bcrypt)
+
+### 📦 Inventory Management
+- Add Items
+- View Items
+- Quantity & Threshold tracking
 
 ### 🎨 UI Features
-- Clean dashboard layout
-- Theme switcher:
-  - 🌸 Pink (default)
-  - ☀ Light
-  - 🌙 Dark
+- Clean UI
+- Theme Support:
+  - 🌸 Pink (Default)
+  - 🌙 Dark Mode
+  - 🤍 Light Mode
+
+### 🌐 Full Stack Integration
+- React frontend connected to FastAPI backend
+- Axios API handling
+- Token-based secure requests
 
 ---
 
-## 🛠 Tech Stack
+## 🛠️ Tech Stack
 
-### Backend
-- FastAPI
-- SQLAlchemy
-- SQLite
-- JWT Authentication
-
-### Frontend
-- React JS
+### 🔹 Frontend
+- React.js
 - Axios
 - CSS (Custom UI + Themes)
 
+### 🔹 Backend
+- FastAPI
+- SQLAlchemy
+- SQLite
+- Passlib (bcrypt)
+- JWT (python-jose)
+
+### 🔹 Deployment
+- Vercel (Frontend)
+- Railway (Backend)
+
 ---
 
-## 📁 Project Structure
-
-## 📂 Project Documents
-
-All project-related documents are available in the `Document/` folder:
-
-- 📄 Project Report (PDF)
-- 🎥 Demo Video
-
-If video is not directly available, refer to the provided link.
+## 📂 Project Structure
