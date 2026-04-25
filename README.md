@@ -47,3 +47,12 @@ A full-stack B2B application to manage inventory and track supply requests acros
 ---
 
 ## 📁 Project Structure
+
+## 📂 Project Documents
+
+All project-related documents are available in the `Document/` folder:
+
+- 📄 Project Report (PDF)
+- 🎥 Demo Video
+
+If video is not directly available, refer to the provided link.
