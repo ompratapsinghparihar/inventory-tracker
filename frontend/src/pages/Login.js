@@ -12,9 +12,7 @@ function Login({ setPage, setIsAuth }) {
       const res = await api.post("/auth/login", form);
 
       localStorage.setItem("token", res.data.access_token);
-
       setIsAuth(true);
-      setPage("items");
     } catch (err) {
       console.error(err);
       alert("Login failed");
@@ -25,16 +23,8 @@ function Login({ setPage, setIsAuth }) {
     <div>
       <h2>Login</h2>
 
-      <input
-        placeholder="Email"
-        onChange={(e) => setForm({ ...form, email: e.target.value })}
-      />
-
-      <input
-        type="password"
-        placeholder="Password"
-        onChange={(e) => setForm({ ...form, password: e.target.value })}
-      />
+      <input placeholder="Email" onChange={(e) => setForm({ ...form, email: e.target.value })} />
+      <input type="password" placeholder="Password" onChange={(e) => setForm({ ...form, password: e.target.value })} />
 
       <button onClick={handleLogin}>Login</button>
 

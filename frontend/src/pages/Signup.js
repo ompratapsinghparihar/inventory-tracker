@@ -25,26 +25,10 @@ function Signup({ setPage }) {
     <div>
       <h2>Signup</h2>
 
-      <input
-        placeholder="Name"
-        onChange={(e) => setForm({ ...form, name: e.target.value })}
-      />
-
-      <input
-        placeholder="Email"
-        onChange={(e) => setForm({ ...form, email: e.target.value })}
-      />
-
-      <input
-        type="password"
-        placeholder="Password"
-        onChange={(e) => setForm({ ...form, password: e.target.value })}
-      />
-
-      <input
-        placeholder="Location"
-        onChange={(e) => setForm({ ...form, location: e.target.value })}
-      />
+      <input placeholder="Name" onChange={(e) => setForm({ ...form, name: e.target.value })} />
+      <input placeholder="Email" onChange={(e) => setForm({ ...form, email: e.target.value })} />
+      <input type="password" placeholder="Password" onChange={(e) => setForm({ ...form, password: e.target.value })} />
+      <input placeholder="Location" onChange={(e) => setForm({ ...form, location: e.target.value })} />
 
       <button onClick={handleSignup}>Signup</button>
 

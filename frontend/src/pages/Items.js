@@ -1,89 +1,45 @@
-import { useEffect, useState } from "react";
-import API from "../api/axios";
+import { useState, useEffect } from "react";
+import api from "../api/axios";
 
 function Items() {
   const [items, setItems] = useState([]);
-  const [name, setName] = useState("");
-  const [quantity, setQuantity] = useState("");
-  const [threshold, setThreshold] = useState("");
+  const [form, setForm] = useState({
+    name: "",
+    quantity: 0,
+    threshold: 0,
+  });
 
   const fetchItems = async () => {
-    try {
-      const res = await API.get("/items");
-      setItems(res.data);
-    } catch (err) {
-      console.log(err);
-    }
+    const res = await api.get("/items/");
+    setItems(res.data);
   };
 
   useEffect(() => {
     fetchItems();
   }, []);
 
-  const handleAdd = async () => {
-    if (!name || !quantity || !threshold) {
-      alert("Fill all fields");
-      return;
-    }
-
-    try {
-      await API.post("/items", {
-        name,
-        quantity: Number(quantity),
-        threshold: Number(threshold),
-      });
-
-      setName("");
-      setQuantity("");
-      setThreshold("");
-
-      fetchItems();
-    } catch (err) {
-      console.log(err);
-    }
+  const addItem = async () => {
+    await api.post("/items/", form);
+    fetchItems();
   };
 
   return (
     <div>
-      <div className="card">
-        <h2>📦 Items</h2>
+      <h2>Items</h2>
 
-        <div className="input-group">
-          <input
-            placeholder="Item name"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-          />
-          <input
-            type="number"
-            placeholder="Quantity"
-            value={quantity}
-            onChange={(e) => setQuantity(e.target.value)}
-          />
-          <input
-            type="number"
-            placeholder="Threshold"
-            value={threshold}
-            onChange={(e) => setThreshold(e.target.value)}
-          />
+      <input placeholder="Name" onChange={(e) => setForm({ ...form, name: e.target.value })} />
+      <input placeholder="Quantity" type="number" onChange={(e) => setForm({ ...form, quantity: Number(e.target.value) })} />
+      <input placeholder="Threshold" type="number" onChange={(e) => setForm({ ...form, threshold: Number(e.target.value) })} />
 
-          <button className="btn btn-primary" onClick={handleAdd}>
-            Add
-          </button>
-        </div>
-      </div>
+      <button onClick={addItem}>Add</button>
 
-      {items.map((item) => (
-        <div className="card" key={item.id}>
-          <h3>{item.name}</h3>
-          <p>Qty: {item.quantity}</p>
-          <p>Threshold: {item.threshold}</p>
-
-          {item.quantity < item.threshold && (
-            <p style={{ color: "red" }}>⚠ Low Stock</p>
-          )}
-        </div>
-      ))}
+      <ul>
+        {items.map((i) => (
+          <li key={i.id}>
+            {i.name} - {i.quantity}
+          </li>
+        ))}
+      </ul>
     </div>
   );
 }
