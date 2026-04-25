@@ -1,15 +1,16 @@
-import { useState } from "react";
-import api from "../api/axios";
+import React, { useState } from "react";
+import API from "../api/axios";
 
-function Login({ setPage, setIsAuth }) {
-  const [form, setForm] = useState({
-    email: "",
-    password: "",
-  });
+function Login({ setIsAuth }) {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
   const handleLogin = async () => {
     try {
-      const res = await api.post("/auth/login", form);
+      const res = await API.post("/auth/login", {
+        username: email,   // IMPORTANT (FastAPI OAuth expects username)
+        password: password,
+      });
 
       localStorage.setItem("token", res.data.access_token);
       setIsAuth(true);
@@ -22,16 +23,13 @@ function Login({ setPage, setIsAuth }) {
   return (
     <div>
       <h2>Login</h2>
-
-      <input placeholder="Email" onChange={(e) => setForm({ ...form, email: e.target.value })} />
-      <input type="password" placeholder="Password" onChange={(e) => setForm({ ...form, password: e.target.value })} />
-
+      <input placeholder="Email" onChange={(e) => setEmail(e.target.value)} />
+      <input
+        type="password"
+        placeholder="Password"
+        onChange={(e) => setPassword(e.target.value)}
+      />
       <button onClick={handleLogin}>Login</button>
-
-      <p>
-        New user?{" "}
-        <button onClick={() => setPage("signup")}>Signup</button>
-      </p>
     </div>
   );
 }

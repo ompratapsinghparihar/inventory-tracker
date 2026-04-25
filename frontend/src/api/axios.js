@@ -1,16 +1,16 @@
 import axios from "axios";
 
-const api = axios.create({
+const API = axios.create({
   baseURL: "https://inventory-tracker-production-f795.up.railway.app",
 });
 
-// Attach token automatically
-api.interceptors.request.use((config) => {
+// token auto attach
+API.interceptors.request.use((req) => {
   const token = localStorage.getItem("token");
   if (token) {
-    config.headers.Authorization = `Bearer ${token}`;
+    req.headers.Authorization = `Bearer ${token}`;
   }
-  return config;
+  return req;
 });
 
-export default api;
+export default API;

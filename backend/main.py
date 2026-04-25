@@ -9,6 +9,11 @@ models.Base.metadata.create_all(bind=engine)
 
 app = FastAPI(title="Inventory Supply Tracker")
 
+origins = [
+    "http://localhost:3000",
+    "https://*.vercel.app",
+]
+
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
