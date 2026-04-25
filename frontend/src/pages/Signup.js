@@ -1,24 +1,22 @@
 import { useState } from "react";
-import API from "../api/axios";
+import api from "../api/axios";
 
-function Signup() {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+function Signup({ setPage }) {
+  const [form, setForm] = useState({
+    name: "",
+    email: "",
+    password: "",
+    role: "user",
+    location: "",
+  });
 
   const handleSignup = async () => {
     try {
-      await API.post("/users", {
-        name,
-        email,
-        password,
-        role: "sdp",
-        location: "default",
-      });
-
-      alert("Signup successful, now login");
+      await api.post("/users/", form);
+      alert("Signup successful");
+      setPage("login");
     } catch (err) {
-      console.log(err);
+      console.error(err);
       alert("Signup failed");
     }
   };
@@ -29,19 +27,31 @@ function Signup() {
 
       <input
         placeholder="Name"
-        onChange={(e) => setName(e.target.value)}
+        onChange={(e) => setForm({ ...form, name: e.target.value })}
       />
+
       <input
         placeholder="Email"
-        onChange={(e) => setEmail(e.target.value)}
+        onChange={(e) => setForm({ ...form, email: e.target.value })}
       />
+
       <input
-        placeholder="Password"
         type="password"
-        onChange={(e) => setPassword(e.target.value)}
+        placeholder="Password"
+        onChange={(e) => setForm({ ...form, password: e.target.value })}
+      />
+
+      <input
+        placeholder="Location"
+        onChange={(e) => setForm({ ...form, location: e.target.value })}
       />
 
       <button onClick={handleSignup}>Signup</button>
+
+      <p>
+        Already have account?{" "}
+        <button onClick={() => setPage("login")}>Login</button>
+      </p>
     </div>
   );
 }

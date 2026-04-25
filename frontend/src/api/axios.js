@@ -1,10 +1,10 @@
 import axios from "axios";
 
-const instance = axios.create({
+const api = axios.create({
   baseURL: "https://inventory-tracker-production-f795.up.railway.app",
 });
 
-instance.interceptors.request.use(
+api.interceptors.request.use(
   (config) => {
     const token = localStorage.getItem("token");
 
@@ -17,4 +17,4 @@ instance.interceptors.request.use(
   (error) => Promise.reject(error)
 );
 
-export default instance;
+export default api;
