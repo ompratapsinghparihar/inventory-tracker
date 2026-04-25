@@ -1,18 +1,23 @@
 import axios from "axios";
 
-const API = axios.create({
+const instance = axios.create({
   baseURL: "https://inventory-tracker-production-f795.up.railway.app/",
 });
 
-// Attach token automatically
-API.interceptors.request.use((req) => {
-  const token = localStorage.getItem("token");
+// Request interceptor (auto token attach karega)
+instance.interceptors.request.use(
+  (config) => {
+    const token = localStorage.getItem("token"); // ❌ NO await
 
-const res = await axios.get("/items", {
-  headers: {
-    Authorization: `Bearer ${token}`,
+    if (token) {
+      config.headers.Authorization = `Bearer ${token}`;
+    }
+
+    return config;
   },
-});
-});
+  (error) => {
+    return Promise.reject(error);
+  }
+);
 
-export default API;
+export default instance;
